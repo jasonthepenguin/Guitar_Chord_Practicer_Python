@@ -1,0 +1,11 @@
+
+
+# ignore contents of Chords folder (eg the screenshots)
+Chords/*
+
+
+__pycache__/
+*.pyc
+*.pyo
+*.swp
+.DS_Store
