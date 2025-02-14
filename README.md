@@ -64,16 +64,12 @@ python play.py
 - Organize your chord images with clear, descriptive filenames
 - Ensure all images are of similar dimensions for consistent display
 - Adjust the timing to match your practice needs
-- Keep the window visible while practicing with your instrument
 
-## Contributing
-
-Feel free to fork this repository and submit pull requests with improvements.
 
 ## License
 
-[Add your chosen license here]
+Lmfao
 
 ## Author
 
-[Your name/username]
+Jason Botterill
