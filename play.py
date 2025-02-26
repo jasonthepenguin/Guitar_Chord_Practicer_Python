@@ -52,7 +52,7 @@ class ChordApp:
         self.play_entry = tk.Entry(play_frame, textvariable=self.play_timer_var, width=5)
         self.play_entry.pack(side="left", padx=2)
         
-        self.play_button = tk.Button(play_frame, text="Start", command=self.start_play_timer)
+        self.play_button = tk.Button(play_frame, text="Play", command=self.start_play_timer)
         self.play_button.pack(side="left", padx=2)
         
         self.pause_play_button = tk.Button(play_frame, text="Pause", command=self.pause_play_timer)
@@ -71,12 +71,6 @@ class ChordApp:
         self.timer_var = tk.StringVar(value="3")
         self.timer_entry = tk.Entry(slideshow_frame, textvariable=self.timer_var, width=5)
         self.timer_entry.pack(side="left", padx=2)
-
-        self.start_button = tk.Button(slideshow_frame, text="Start", command=self.start_slideshow)
-        self.start_button.pack(side="left", padx=2)
-
-        self.stop_button = tk.Button(slideshow_frame, text="Stop", command=self.stop_slideshow)
-        self.stop_button.pack(side="left", padx=2)
 
         # Initialize variables
         self.running = False
@@ -179,11 +173,17 @@ class ChordApp:
                     self.play_seconds_remaining = 180  # 3 minutes
             self.play_timer_running = True
             self.update_play_timer()
+            
+            # Start the slideshow automatically when play timer starts
+            self.start_slideshow()
 
     def pause_play_timer(self):
         """Pause the play timer, keeping current time displayed"""
         self.play_timer_running = False
         # Current time remains displayed as set by update_play_timer
+        
+        # Also pause the slideshow when timer is paused
+        self.stop_slideshow()
 
     def reset_play_timer(self):
         """Reset the play timer to initial value"""
@@ -196,6 +196,9 @@ class ChordApp:
                 self.play_timer_var.set("3")
         except ValueError:
             self.play_timer_var.set("3")
+            
+        # Stop the slideshow when timer is reset
+        self.stop_slideshow()
 
     def update_play_timer(self):
         """Update the play timer display and countdown"""
@@ -208,6 +211,9 @@ class ChordApp:
         elif self.play_timer_running:
             self.play_timer_running = False
             self.play_countdown_label.config(text="Practice time's up!")
+            
+            # Stop the slideshow when the timer ends
+            self.stop_slideshow()
 
 if __name__ == "__main__":
     root = tk.Tk()
